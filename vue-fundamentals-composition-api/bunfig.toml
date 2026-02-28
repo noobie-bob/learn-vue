@@ -1,0 +1,5 @@
+# ref: https://bun.com/docs/guides/install/jfrog-artifactory
+# [install.registry]
+# url = "https://MY_SUBDOMAIN.jfrog.io/artifactory/api/npm/npm/_auth=MY_TOKEN"
+# You can use an environment variable here
+# url = "$NPM_CONFIG_REGISTRY"
