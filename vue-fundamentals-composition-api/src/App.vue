@@ -1,33 +1,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 const header = ref('Shopping List App')
-const items = ref(['item 1', 'item 4', 'item 3', 'item 2'])
-const reorderItems = () => {
-  items.value.sort()
-}
-const resetItems = () => {
-  items.value = ['item 1', 'item 4', 'item 3', 'item 2']
-}
-const addItem = (item: string) => {
-  items.value.push(item)
-}
+const items = ref([
+  { id: 1, data: 'item 1' },
+  { id: 2, data: 'item 4' },
+  { id: 3, data: 'item 3' },
+  { id: 4, data: 'item 2' },
+])
+const items2 = ref({
+  'id-1': { id: 1, data: 'item 1' },
+  'id-3': { id: 2, data: 'item 4' },
+  'id-4': { id: 3, data: 'item 3' },
+  'id-2': { id: 4, data: 'item 2' },
+})
 </script>
 
 <template>
   <h1>{{ header }}</h1>
+  <h3>Item list1</h3>
   <ul>
-    <li v-for="(item, index) in items" :key="index">
-      <input v-model="item" />
-    </li>
+    <li v-for="{ id, data } in items" :key="id">{{ data }}</li>
   </ul>
-  <input type="text" placeholder="Add an item" @keyup.enter="
-      if ($event.target) {
-    addItem(($event.target as HTMLInputElement).value)
-      ; ($event.target as HTMLInputElement).value = ''
-  }
-    " />
-  <button class="padding-2" @click="reorderItems">Reorder Items</button>
-  <button class="padding-2" @click="resetItems">Reset Items</button>
+  <h3>Item list2</h3>
+  <ul>
+    <li v-for="({ id, data }, idx) in items2" :key="id">{{ idx }}: {{ data }}</li>
+  </ul>
 </template>
 
 <style scoped>
